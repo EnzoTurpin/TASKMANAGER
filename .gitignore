@@ -23,7 +23,6 @@ buildNumber.properties
 build/
 
 # Package Files #
-*.jar
 *.war
 *.ear
 *.zip

@@ -19,6 +19,7 @@ public class TaskIO {
   private static final SecretKey key = EncryptionUtility.getOrGenerateKey();
   public static final String DATE_FORMAT_PATTERN = "yyyy-MM-dd HH:mm";
 
+  // Charge les tâches à partir d'un fichier, en les déchiffrant au préalable.
   public static List<Task> loadTasks() {
     List<Task> tasks = new ArrayList<>();
     File file = new File(TASKS_FILE);
@@ -61,13 +62,12 @@ public class TaskIO {
     return tasks;
   }
 
+  // Sauvegarde toutes les tâches en les chiffrant avant écriture dans le fichier.
   public static void saveAllTasks(List<Task> tasks) {
     SimpleDateFormat dateFormat = new SimpleDateFormat(DATE_FORMAT_PATTERN);
 
-    // Créer le JSONArray pour le fichier crypté
     JSONArray tasksJsonForEncryption = new JSONArray();
 
-    // Préparer le StringBuilder pour le fichier non crypté
     StringBuilder unencryptedJsonBuilder = new StringBuilder();
     unencryptedJsonBuilder.append("[\n");
 
@@ -77,7 +77,7 @@ public class TaskIO {
 
       try {
         Date date = dateFormat.parse(task.getDateTime());
-        String formattedDate = dateFormat.format(date); // Utilisez la même instance de dateFormat pour le formatage
+        String formattedDate = dateFormat.format(date);
 
         // Ajouter au JSONArray pour le fichier crypté
         taskObject.put("title", task.getTitle());
@@ -88,7 +88,6 @@ public class TaskIO {
         tasksJsonForEncryption.put(taskObject);
 
         // Construire manuellement la chaîne JSON pour le fichier non crypté
-        // Utilisez formattedDate qui est maintenant correctement formaté
         String unencryptedTaskJson = String.format(
           "    {\n" +
           "        \"title\": \"%s\",\n" +
@@ -139,6 +138,7 @@ public class TaskIO {
     }
   }
 
+  // Initialise un fichier vide chiffré si le fichier des tâches n'existe pas.
   private static void initializeEmptyEncryptedFile(File file) {
     try {
       if (file.createNewFile()) {
