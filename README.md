@@ -20,60 +20,43 @@ Pour garantir la confidentialité des informations, les tâches sont stockées d
 
 ## Dépendances
 
-Ce projet utilise les librairies suivantes :
+Ce projet utilise les bibliothèques suivantes, qui sont incluses dans le dossier `lib` du dépôt :
 
 - Java Development Kit (JDK) version 8 ou supérieure.
-- [JTattoo](http://www.jtattoo.net/) pour l'apparence de l'interface utilisateur.
-- [JSON.org](https://www.json.org/json-fr.html) pour la manipulation des données JSON.
-- [JCalendar](https://toedter.com/jcalendar/) pour la sélection de dates.
+- JTattoo pour l'apparence de l'interface utilisateur.
+- org.json pour la manipulation des données JSON.
+- JCalendar pour la sélection de dates.
 
-## Gestion des Dépendances
-
-Les dépendances externes requises par ce projet ne sont pas incluses dans le dépôt. Pour les installer, suivez les étapes suivantes :
-
-1. Rendez-vous sur le site web du Maven Repository pour télécharger les fichiers JAR des bibliothèques nécessaires.
-
-2. Pour la bibliothèque `org.json`, utilisez le lien suivant pour obtenir la dernière version : [org.json JSON library JAR](https://mvnrepository.com/artifact/org.json/json)
-
-3. Cliquez sur le lien correspondant à la version souhaitée, puis téléchargez le fichier JAR en cliquant sur le bouton "Download".
-
-4. Pour la bibliothèque `JTattoo`, qui fournit des skins pour l'interface utilisateur, accédez à la page de téléchargement officielle : [JTattoo](http://www.jtattoo.net/Download.html), choisissez la version souhaitée et téléchargez le fichier JAR.
-
-5. Pour la bibliothèque `JCalendar`, qui permet de choisir des dates, consultez la page suivante : [JCalendar](https://toedter.com/jcalendar/), sélectionnez la version nécessaire et téléchargez le fichier JAR.
-
-Une fois que vous avez téléchargé tous les fichiers JAR nécessaires, placez-les dans le dossier `lib/` du projet TaskManager.
+Aucune action supplémentaire n'est nécessaire pour installer ces dépendances, elles sont fournies pour une mise en place rapide et facile.
 
 ## Installation
 
 Pour utiliser TaskManager, suivez ces étapes :
 
 1. Assurez-vous que Java est installé sur votre système.
-2. Téléchargez le code source du projet.
-3. Installez toutes les librairies nécessaires comme décrit dans la section [Gestion des Dépendances](#gestion-des-dépendances).
-4. Utilisez le Makefile inclus pour compiler et exécuter le projet.
+2. Clonez ou téléchargez le code source du projet depuis ce dépôt GitHub.
+3. Toutes les librairies nécessaires sont déjà présentes dans le dossier `lib/`.
+4. Utilisez le Makefile inclus pour compiler et exécuter le projet avec les commandes suivantes :
+   - `make build` pour compiler le projet.
+   - `make run` pour exécuter l'application.
+   - `make clean` pour nettoyer le projet.
 
 ## Compilation et Exécution
 
-Avant d'exécuter les commandes suivantes, assurez-vous d'être à la racine du projet. Le Makefile inclus permet de simplifier la compilation et l'exécution de l'application :
+Avant d'exécuter les commandes suivantes, assurez-vous d'être à la racine du projet. Le Makefile inclus permet de simplifier la compilation et l'exécution de l'application.
 
-- Pour décompresser les librairies et compiler le projet, exécutez : `make build`
+- Pour compiler le projet, exécutez : `make build`
 - Pour exécuter l'application, utilisez : `make run`
-- Pour nettoyer le projet (supprimer les fichiers compilés et les librairies décompressées), tapez : `make clean`
-
-Ces commandes permettent de gérer facilement les différentes phases du cycle de développement du projet depuis la racine de celui-ci.
+- Pour nettoyer le projet, tapez : `make clean`
 
 ## Structure du Projet
 
 Le projet est organisé comme suit :
 
-- `src/`: Contient le code source du projet, y compris les classes Java pour l'interface utilisateur, la logique de gestion des tâches, le cryptage, etc.
-- `lib/`: Doit contenir les fichiers JAR des bibliothèques externes nécessaires, telles que JTattoo, JSON, et JCalendar. (Notez que le fichier `.gitkeep` est présent pour maintenir la structure du dossier dans le dépôt et n'affecte pas la fonctionnalité du projet.)
+- `src/`: Contient le code source du projet.
+- `lib/`: Contient les fichiers JAR des bibliothèques externes nécessaires.
 - `bin/`: Dossier pour les fichiers compilés (créé par le Makefile).
-- `resources/`: Contient les fichiers de données et de configuration nécessaires au fonctionnement de l'application :
-  - `keyfile.txt` : Contient la clé de cryptage utilisée pour sécuriser les données des tâches.
-  - `categories.txt` : Stocke les catégories créées à travers l'interface TaskManager, permettant une personnalisation par l'utilisateur.
-  - `tasks.json` : Fichier JSON crypté contenant toutes les tâches sauvegardées par l'application.
-  - `unencrypted_tasks.json` : Version non cryptée du fichier `tasks.json`, utilisée pour le débogage et le développement.
+- `resources/`: Contient les fichiers de données et de configuration nécessaires au fonctionnement de l'application.
 
 ## Contribution
 
