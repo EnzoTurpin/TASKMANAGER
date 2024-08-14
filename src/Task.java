@@ -81,7 +81,7 @@ public class Task {
   public String toString() {
     SimpleDateFormat inputFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm");
     SimpleDateFormat outputFormat = new SimpleDateFormat(
-      "dd MMMM yyyy",
+      "dd MMMM yyyy HH:mm",
       Locale.FRANCE
     ); // Locale pour le mois en lettres
     Date date;
